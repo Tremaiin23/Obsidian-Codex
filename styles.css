@@ -1,0 +1,111 @@
+:root{
+  --bg: #000;
+  --glass: rgba(255,255,255,0.06);
+  --accent: #111;
+  --text: #fff;
+  --muted: rgba(255,255,255,0.75);
+  font-family: "Noto Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* page layout */
+html,body{height:100%;margin:0;background:#000;color:var(--text);}
+.intro{
+  min-height:100vh;
+  background-image: url('Generated Image September 02, 2025 - 2_05PM.jpeg');
+  background-size: cover;
+  background-position: center;
+  display:flex;
+  align-items:flex-end; /* moved lower on the page */
+  justify-content:center;
+  position:relative;
+  padding-bottom:2vh; /* tighten bottom so content sits lower */
+}
+
+/* subtle dark overlay for readability */
+.overlay{
+  width:100%;
+  max-width:900px;
+  padding:24px 28px; /* slightly tighter padding */
+  box-sizing:border-box;
+  backdrop-filter: none; /* remove blur so background shows through */
+  background: transparent; /* remove card background to reveal image */
+  margin:24px;
+  border-radius:0; /* remove rounded card feel */
+  box-shadow: none; /* remove shadow */
+  position: relative; /* ensure absolute children position relative to this container */
+}
+
+/* header / brand */
+.brand{
+  /* brand removed - kept for reference if needed */
+}
+
+/* layout sections */
+.content{height:100vh; padding:18px 6px; display:flex; flex-direction:column; justify-content:space-between; align-items:flex-start;}
+.top{align-self:stretch; display:flex; align-items:flex-start; padding-top:6vh;}
+.bottom{align-self:stretch; display:flex; flex-direction:column; gap:12px; align-items:flex-start; padding-bottom:6vh;}
+
+/* headline adjustments */
+.headline{
+  font-size:clamp(22px,6.2vw,40px);
+  line-height:1.02;
+  margin:0;
+  font-weight:700;
+  color:var(--text);
+  transform:none;
+  opacity:0;
+  animation: slideUp 700ms cubic-bezier(.2,.9,.2,1) 160ms forwards;
+}
+.headline .line{display:block;line-height:1.02;}
+.headline .line1{font-size:1.02em;}
+.headline .line2{font-size:0.92em; color:var(--muted); margin-top:6px; font-weight:600; opacity:0.95;}
+
+/* button */
+.btn{
+  --size:58px;
+  margin-top:6px;
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  padding:14px 18px; /* increased vertical padding for greater height */
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,0.06);
+  background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  color:var(--text);
+  cursor:pointer;
+  font-weight:600;
+  font-size:15px;
+  transform:translateY(18px);
+  opacity:0;
+  animation: slideUp 700ms cubic-bezier(.2,.9,.2,1) 540ms forwards;
+  transition:transform 180ms ease, box-shadow 180ms ease;
+  will-change:transform;
+  outline:none;
+}
+.btn:active{transform:translateY(20px) scale(0.997);}
+
+/* arrow micro-animation */
+.arrow{
+  display:inline-block;
+  width:20px;
+  text-align:center;
+  transform:translateX(-6px);
+  transition:transform 360ms cubic-bezier(.2,.9,.2,1);
+  font-size:18px;
+  color:var(--muted);
+}
+.btn:hover .arrow{transform:translateX(4px);}
+
+/* slide up keyframes */
+@keyframes slideUp {
+  from { transform:translateY(24px); opacity:0; }
+  to   { transform:translateY(0); opacity:1; }
+}
+
+/* responsive tweaks for mobile */
+@media (max-width:520px){
+  .overlay{padding:18px;margin:12px;border-radius:10px;}
+  .logo--tiny{width:40px;height:40px;}
+  .content{gap:12px;}
+  .btn{padding:12px 14px;font-size:14px;} /* mobile vertical padding slightly increased */
+}
